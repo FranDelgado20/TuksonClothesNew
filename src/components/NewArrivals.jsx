@@ -19,7 +19,7 @@ const NewArrivals = () => {
               <div>
                 <div className="mt-10">
                   <a
-                    href="#"
+                    href="/products"
                     className="inline-block rounded-md border border-transparent  px-8 py-3 text-center font-medium text-black no-underline color-nav-footer hover:bg-orange-700"
                   >
                     Ver colección
