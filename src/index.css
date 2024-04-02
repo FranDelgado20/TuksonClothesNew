@@ -1,0 +1,21 @@
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+.App {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+.mainSection {
+  flex-grow: 1;
+}
+.color-nav-footer{
+  background-color: #f3ebd8;
+
+}
+.boton{
+  color: black;
+}
+.boton:hover{
+  color: #fd4b2e;
+}
