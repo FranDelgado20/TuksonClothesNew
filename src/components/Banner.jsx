@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { XMarkIcon } from '@heroicons/react/20/solid'
+import RegisterComp from './RegisterComp';
 const Banner = () => {
   const [showBanner, setShowBanner] = useState(true);
 
@@ -36,20 +37,21 @@ const Banner = () => {
           }}
         />
       </div>
-      <div className="flex flex-wrap  justify-items-center gap-x-4 gap-y-2 mt-3">
-        <p className="text-sm leading-6 text-gray-900">
+      <div className="flex flex-wrap align-items-center gap-x-4 gap-y-2 my-3">
+        <p className="text-sm leading-6 text-gray-900 m-0">
           <strong className="font-semibold">Bienvenido</strong>
           <svg viewBox="0 0 2 2" className="mx-2 inline h-0.5 w-0.5 fill-current" aria-hidden="true">
             <circle cx={1} cy={1} r={1} />
           </svg>
           Registrate y obtené un 10% Off en tu primera compra
         </p>
-        <a
+        <RegisterComp type={"banner"}/>
+        {/* <a
           href="#"
           className="flex-none  px-3.5 py-1 no-underline text-sm font-semibold text-black   focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-900"
         >
           Registrarse ahora <span aria-hidden="true">&rarr;</span>
-        </a>
+        </a> */}
       </div>
       <div className="flex flex-1 justify-end">
         <button type="button" className="-m-3 p-3 focus-visible:outline-offset-[-4px]" onClick={handleDismiss}>
