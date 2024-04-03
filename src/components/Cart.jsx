@@ -37,7 +37,13 @@ const Cart = () => {
 
   return (
     <>
-      <Button onClick={openCart}  variant="text" className="boton flex items-center gap-2 py-2 pr-4"><i class="bi bi-cart"></i></Button>
+      <Button
+        onClick={openCart}
+        variant="text"
+        className="boton flex items-center gap-2 py-2 pr-4"
+      >
+        <i className="bi bi-cart"></i>
+      </Button>
       <Transition.Root show={open} as={Fragment}>
         <Dialog as="div" className="relative z-10" onClose={setOpen}>
           <Transition.Child

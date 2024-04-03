@@ -38,16 +38,16 @@ const FooterComp = () => {
     // </footer>
     <footer className="mt-24 color-nav-footer">
       <Row className=" mx-0">
-        <Col lg={12} className=" flex justify-center  ">
+        <Col lg={12} className="flex justify-center">
           <div>
             <Link to={"/"}>
-              <img src="logo.png" alt="" className="w-44  " />
+              <img src="logo.png" alt="Logo Tukson Clothes" className="w-44" />
             </Link>
           </div>
         </Col>
         <Col lg={12} sm={12} className="flex">
-          <div className="mx-auto   ">
-            <div className="mx-auto grid w-full  "></div>
+          <div className="mx-auto">
+            <div className="mx-auto grid w-full"></div>
             <div className="flex w-full flex-col  justify-items-center justify-center border-t border-blue-gray-50 py-4 md:flex-row ">
               <Typography
                 variant="small"
@@ -72,7 +72,7 @@ const FooterComp = () => {
                     <Typography
                       as="a"
                       href="#"
-                      color="blacky"
+                      color="black"
                       className="font-normal transition-colors boton no-underline"
                     >
                       Contáctanos{" "}

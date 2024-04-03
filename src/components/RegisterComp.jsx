@@ -6,37 +6,35 @@ import { errorRegisterSchema } from "../utils/validationSchema";
 const RegisterComp = ({ type }) => {
   return (
     <>
-    {
-      type === "banner" ?
-
-      <button
-        className="flex-none px-3.5 no-underline text-sm font-semibold text-black focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-900"
-        data-bs-toggle="modal"
-        data-bs-target="#registerModal"
-      >
-        Registrarse ahora <span aria-hidden="true">&rarr;</span>
-      </button>
-      :
-      <Button
-      variant="text"
-      className="boton"
-      data-bs-toggle="modal"
-      data-bs-target="#registerModal"
-    >
-      Registrarse
-    </Button>
-    }
+      {type === "banner" ? (
+        <button
+          className="flex-none px-3.5 no-underline text-sm font-semibold text-black focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-900"
+          data-bs-toggle="modal"
+          data-bs-target="#registerModal"
+        >
+          Registrarse ahora <span aria-hidden="true">&rarr;</span>
+        </button>
+      ) : (
+        <Button
+          variant="text"
+          className="boton"
+          data-bs-toggle="modal"
+          data-bs-target="#registerModal"
+        >
+          Registrarse
+        </Button>
+      )}
       <div
         className="modal fade"
         id="registerModal"
-        tabindex="-1"
+        tabIndex="-1"
         aria-labelledby="registerModalLabel"
         aria-hidden="true"
       >
         <div className="modal-dialog text-black ">
           <div className="modal-content">
             <div className="modal-body color-nav-footer rounded-lg">
-              <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
+              <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-4 lg:px-8">
                 <div className="sm:mx-auto sm:w-full sm:max-w-sm">
                   <h1 className=" text-center font-bold text-gray-900">
                     Creá tu cuenta
@@ -216,6 +214,27 @@ const RegisterComp = ({ type }) => {
                               "is-invalid"
                             }`}
                           />
+                            <button type="submit" className="absolute inset-y-0 end-2 flex items-center">
+                              <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                strokeWidth={1.5}
+                                stroke="currentColor"
+                                className="w-6 h-6"
+                              >
+                                <path
+                                  strokeLinecap="round"
+                                  strokeLinejoin="round"
+                                  d="M2.036 12.322a1.012 1.012 0 0 1 0-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178Z"
+                                />
+                                <path
+                                  strokeLinecap="round"
+                                  strokeLinejoin="round"
+                                  d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
+                                />
+                              </svg>
+                            </button>
                         </div>
                         <small className="text-danger">
                           {errors.repeatPass &&
