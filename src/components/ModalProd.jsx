@@ -41,7 +41,9 @@ const ModalProd = () => {
   const [selectedSize, setSelectedSize] = useState(product.sizes[2]);
   return (
     <>
-      <Button onClick={() => setOpen(true)}>Ver más</Button>
+      <Button onClick={() => setOpen(true)} className="w-full">
+        Ver más
+      </Button>
       <Transition.Root show={open} as={Fragment}>
         <Dialog as="div" className="relative z-10" onClose={setOpen}>
           <Transition.Child
