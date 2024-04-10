@@ -210,7 +210,7 @@ const Filter = () => {
                     </Typography>
                   </CardBody>
                   <CardFooter className="pt-0">
-                    <ModalProd />
+                    <ModalProd prod={prod}/>
                   </CardFooter>
                 </Card>
               </Col>
