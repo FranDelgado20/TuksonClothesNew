@@ -9,7 +9,7 @@ const includedFeatures = [
 ];
 const Subs = () => {
   return (
-    <div className="bg-white py-24 sm:py-32">
+    <div className="bg-white mt-10">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="mx-auto max-w-2xl sm:text-center">
           <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
@@ -66,7 +66,7 @@ const Subs = () => {
                 </p>
                 <a
                   href="#"
-                  className="mt-10 block w-full rounded-md  color-nav-footer px-3 py-2 text-center text-sm font-semibold no-underline text-black shadow-sm hover:bg-orange-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                  className="mt-10 block w-full rounded-md  color-nav-footer px-3 py-2 text-center text-sm font-semibold no-underline text-black shadow-sm transition hover:bg-orange-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                 >
                   Suscribirme
                 </a>

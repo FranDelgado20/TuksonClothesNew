@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { Fragment, useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { XMarkIcon } from "@heroicons/react/24/outline";
-import { Button } from "@material-tailwind/react";
+import { Button, ListItem } from "@material-tailwind/react";
 
 const products = [
   {
@@ -37,7 +37,13 @@ const Cart = () => {
 
   return (
     <>
-      <Button onClick={openCart}  variant="text" className="boton flex items-center gap-2 py-2 pr-4"><i class="bi bi-cart"></i></Button>
+      <Button
+        onClick={openCart}
+        variant="text"
+        className="boton flex items-center gap-1 p-0 h-min normal-case text-sm my-2"
+      >
+       <i className="bi bi-cart"></i> Mi carrito
+      </Button>
       <Transition.Root show={open} as={Fragment}>
         <Dialog as="div" className="relative z-10" onClose={setOpen}>
           <Transition.Child
