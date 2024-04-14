@@ -141,6 +141,8 @@ function NavList() {
 const NavbarComp = () => {
   const [openNav, setOpenNav] = useState(false);
 
+  const token = JSON.parse(sessionStorage.getItem("token"))
+
   useEffect(() => {
     window.addEventListener(
       "resize",
@@ -161,8 +163,18 @@ const NavbarComp = () => {
           <NavList />
         </div>
         <div className="hidden lg:flex gap-3">
-          <LoginComp />
-          <RegisterComp />
+          {
+            !token ?
+            <>
+            <LoginComp />
+            <RegisterComp />
+            </>
+            :
+            <>
+            <ListItem>Hola</ListItem>
+            <ListItem>Hola</ListItem>
+            </>
+          }
         </div>
         <Button
           variant="text"
@@ -180,8 +192,18 @@ const NavbarComp = () => {
       <Collapse open={openNav} className="flex flex-col">
         <NavList />
         <div className="flex flex-col justify-start align-items-start lg:hidden">
-          <LoginComp />
-          <RegisterComp />
+          {
+            !token ?
+            <>
+            <LoginComp />
+            <RegisterComp />
+            </>
+            :
+            <>
+            <ListItem>Hola</ListItem>
+            <ListItem>Hola</ListItem>
+            </>
+          }
         </div>
       </Collapse>
     </Navbar>

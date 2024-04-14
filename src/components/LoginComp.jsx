@@ -2,29 +2,57 @@ import React, { useState } from "react";
 import { Button } from "@material-tailwind/react";
 import { Formik } from "formik";
 import { errorLoginSchema } from "../utils/validationSchema";
+import { Modal } from "react-bootstrap";
+import clientAxios, { config } from "../utils/axiosClient";
+import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
 
 const LoginComp = () => {
+  const navigate = useNavigate("")
+
   const [viewPass, setViewPass] = useState(false);
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
   const handleViewPass = () => setViewPass(!viewPass);
+
+  const loginUser = async({ email, pass }) => {
+    try {
+      const res = await clientAxios.post("/usuarios/login", {
+        email,
+        pass
+      }, config)
+      if(res.status === 200){
+        sessionStorage.setItem("token", JSON.stringify(res.data.token))
+        sessionStorage.setItem("idUser", JSON.stringify(res.data.userExist._id))
+        sessionStorage.setItem("role", JSON.stringify(res.data.userExist.role))
+
+        handleClose()
+        navigate("/productos")
+      }
+    } catch (error) {
+      console.log(error)
+      Swal.fire({
+        icon: "error",
+        title: "Al parecer hubo un error",
+        text: error.response.data?.msg,
+        showConfirmButton: false,
+        timer: 2000,
+      });
+    }
+  }
   return (
     <>
       <Button
         variant="text"
         className="boton p-0 h-min rounded-none normal-case text-sm my-2"
-        data-bs-toggle="modal"
-        data-bs-target="#loginModal"
+        onClick={handleShow}
       >
         Iniciar sesión
       </Button>
-      <div
-        className="modal fade"
-        id="loginModal"
-        tabIndex="-1"
-        aria-labelledby="loginModalLabel"
-        aria-hidden="true"
-      >
-        <div className="modal-dialog text-black ">
+      <Modal show={show} onHide={handleClose}>
           <div className="modal-content">
             <div className="modal-body color-nav-footer rounded-lg">
               <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-4 lg:px-8">
@@ -44,7 +72,7 @@ const LoginComp = () => {
                     pass: "",
                   }}
                   validationSchema={errorLoginSchema}
-                  onSubmit={(values) => console.log(values)}
+                  onSubmit={(values) => loginUser(values)}
                 >
                   {({
                     values,
@@ -127,7 +155,7 @@ const LoginComp = () => {
                               errors.pass && touched.pass && "is-invalid"
                             }`}
                           />
-                                                    <button
+                          <button
                             type="button"
                             className="absolute inset-y-0 end-2 flex items-center"
                             onClick={handleViewPass}
@@ -140,7 +168,7 @@ const LoginComp = () => {
                                 viewBox="0 0 24 24"
                                 strokeWidth={1.5}
                                 stroke="currentColor"
-                                className="w-5"
+                                className="w-5 hover:text-orange-500"
                               >
                                 <path
                                   strokeLinecap="round"
@@ -160,7 +188,7 @@ const LoginComp = () => {
                                 viewBox="0 0 24 24"
                                 strokeWidth={1.5}
                                 stroke="currentColor"
-                                className="w-5"
+                                className="w-5 hover:text-orange-500"
                               >
                                 <path
                                   strokeLinecap="round"
@@ -174,7 +202,7 @@ const LoginComp = () => {
                         <small className="text-danger">
                           {errors.pass && touched.pass && errors.pass}
                         </small>
-                     
+
                         <div className="mt-4">
                           <button
                             type="submit"
@@ -191,8 +219,7 @@ const LoginComp = () => {
               </div>
             </div>
           </div>
-        </div>
-      </div>
+      </Modal>
     </>
   );
 };

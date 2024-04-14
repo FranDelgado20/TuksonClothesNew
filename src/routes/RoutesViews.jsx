@@ -6,7 +6,7 @@ import Error404 from '../pages/Error404'
 const RoutesViews = () => {
   return (
     <Routes>
-        <Route path='/products' element={<ProductsPage/>}/>
+        <Route path='/productos' element={<ProductsPage/>}/>
         <Route path='/' element={<HomePage/>}/>
         <Route path='*' element={<Error404/>}/>
     </Routes>

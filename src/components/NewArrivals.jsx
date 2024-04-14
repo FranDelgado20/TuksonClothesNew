@@ -20,7 +20,7 @@ const NewArrivals = () => {
               </div>
               <div className="flex justify-center">
                 <Link
-                  to="/products"
+                  to="/productos"
                   className="inline-block rounded-md border border-transparent px-8 py-3 text-center font-medium text-black no-underline color-nav-footer hover:bg-orange-700 transition"
                 >
                   Ver colección
