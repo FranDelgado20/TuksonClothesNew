@@ -76,7 +76,7 @@ function NavListMenu() {
 
   return (
     <React.Fragment>
-      <Link to={"/products"} className="no-underline">
+      <Link to={"/productos"} className="no-underline">
         <Menu
           open={isMenuOpen}
           handler={setIsMenuOpen}

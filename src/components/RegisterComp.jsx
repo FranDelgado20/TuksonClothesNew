@@ -2,10 +2,9 @@ import { Button } from "@material-tailwind/react";
 import { Formik } from "formik";
 import React, { useState } from "react";
 import { errorRegisterSchema } from "../utils/validationSchema";
-import Swal from "sweetalert2";
 import clientAxios, { config } from "../utils/axiosClient";
-import { useNavigate } from "react-router-dom";
 import { Modal } from "react-bootstrap";
+import { toast } from "sonner";
 
 const RegisterComp = ({ type }) => {
   const [viewPass, setViewPass] = useState(false);
@@ -21,12 +20,8 @@ const RegisterComp = ({ type }) => {
   const createUser = async ({ name, email, pass, repeatPass }) => {
     try {
       if (pass !== repeatPass) {
-        return Swal.fire({
-          icon: "error",
-          title: "Las contraseñas no coinciden",
-          text: "Revisa los datos ingresados",
-          showConfirmButton: false,
-          timer: 2000,
+        return toast.error("Las contraseñas no coinciden", {
+          description: "Revisa tus datos",
         });
       }
 
@@ -40,22 +35,14 @@ const RegisterComp = ({ type }) => {
         config
       );
       if (res.status === 201) {
-        Swal.fire({
-          icon: "success",
-          title: res.data.msg,
-          text: "Ya puedes iniciar sesión",
-          showConfirmButton: false,
-          timer: 2000,
+        toast.success(res.data.msg, {
+          description: "Ya puedes iniciar sesión",
         });
         handleClose();
       }
     } catch (error) {
-      Swal.fire({
-        icon: "error",
-        title: "Al parecer hubo un error",
-        text: error.response.data?.msg || error.response.data[0]?.msg,
-        showConfirmButton: false,
-        timer: 2000,
+      toast.error("Al parecer hubo un error", {
+        description: error.response.data?.msg || error.response.data[0]?.msg,
       });
     }
   };
