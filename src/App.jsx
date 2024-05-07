@@ -6,26 +6,18 @@ import { BrowserRouter as Router } from "react-router-dom";
 import RoutesViews from "./routes/RoutesViews";
 import FooterComp from "./components/FooterComp";
 
-
-
 const App = () => {
   return (
-   <Router>
-    <div className="App">
-      <div  >
-
-      <NavbarComp/>
-
+    <Router>
+      <div className="App">
+        <NavbarComp />
+        <main className="mainSection">
+          <RoutesViews />
+        </main>
+        <FooterComp />
       </div>
-      <main className="mainSection">
-        <RoutesViews/>
-      </main>
-      <div>
-        <FooterComp/>
-      </div>
-    </div>
-   </Router>
-  )
-}
+    </Router>
+  );
+};
 
-export default App
+export default App;

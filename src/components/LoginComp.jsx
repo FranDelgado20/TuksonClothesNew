@@ -37,11 +37,12 @@ const LoginComp = () => {
         sessionStorage.setItem("role", JSON.stringify(res.data.userExist.role));
 
         handleClose();
-        navigate("/productos");
+        if (res.data.userExist.role === "user") navigate("/productos");
+        else navigate("/administrador");
       }
     } catch (error) {
       toast.error("Al parecer hubo un error", {
-        description: error.response.data?.msg,
+        description: error.response.data.msg,
       });
     }
   };

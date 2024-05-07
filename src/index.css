@@ -9,13 +9,29 @@
 .mainSection {
   flex-grow: 1;
 }
-.color-nav-footer{
+.color-nav-footer {
   background-color: #f3ebd8;
-
 }
-.boton{
+.boton {
   color: black;
 }
-.boton:hover{
+.boton:hover {
   color: #fd4b2e;
+}
+.widthBuscador {
+  width: 40%;
+}
+@media (width < 991px) {
+  .widthBuscador {
+    width: 75%;
+  }
+}
+@media (width < 394px) {
+  .tableHead {
+    flex-direction: column;
+  }
+  .widthBuscador {
+    width: 100%;
+    margin-top: 20px;
+  }
 }

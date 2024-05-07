@@ -31,7 +31,7 @@ const NewArrivals = () => {
         </Col>
         <Col sm={12} lg={6} className="flex justify-items-center my-3">
           <img
-            src="remeras.png"
+            src="/productos/remeras.png"
             alt="Imagen remera"
             className="img-fluid object-contain"
           />

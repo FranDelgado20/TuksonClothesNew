@@ -1,9 +1,7 @@
-import React from 'react'
+import React from "react";
 
-const Icono = ({icon}) => {
-  return (
-    <img src={`${icon}.png`} alt={`${icon}`} className=""/>
-  )
-}
+const Icono = ({ icon }) => {
+  return <img src={`${icon}.png`} alt={`${icon}`} />;
+};
 
-export default Icono
+export default Icono;

@@ -9,7 +9,7 @@ const Banner = () => {
   };
 
   if (!showBanner) {
-    return null; // Si showBanner es falso, no se mostrará el banner
+    return null;
   }
   return (
     <div className="relative isolate flex items-center gap-x-6  overflow-hidden  px-6  sm:px-3.5 sm:before:flex-1">

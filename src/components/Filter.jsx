@@ -24,37 +24,37 @@ import { Link } from "react-router-dom";
 const sortOptions = [
   {
     name: "Remeras",
-    icon: "camiseta",
+    icon: "/iconosCategorias/camiseta",
     current: false,
     href: "",
   },
   {
     name: "Jeans",
-    icon: "moda",
+    icon: "/iconosCategorias/moda",
     current: false,
     href: "",
   },
   {
     name: "Camperas",
-    icon: "chaqueta",
+    icon: "/iconosCategorias/chaqueta",
     current: false,
     href: "",
   },
   {
     name: "Buzos",
-    icon: "sudadera",
+    icon: "/iconosCategorias/sudadera",
     current: false,
     href: "",
   },
   {
     name: "Gorras",
-    icon: "gorra",
+    icon: "/iconosCategorias/gorra",
     current: false,
     href: "",
   },
   {
     name: "Calzado",
-    icon: "zapato",
+    icon: "/iconosCategorias/zapato",
     current: false,
     href: "",
   },
