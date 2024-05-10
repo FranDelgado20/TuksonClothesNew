@@ -1,4 +1,3 @@
-import React from "react";
 import { Container, Row } from "react-bootstrap";
 import Filter from "../components/Filter";
 import { Toaster } from "sonner";

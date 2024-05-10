@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { XMarkIcon } from '@heroicons/react/20/solid'
 import RegisterComp from './RegisterComp';
 const Banner = () => {

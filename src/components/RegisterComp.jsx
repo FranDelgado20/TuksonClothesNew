@@ -1,10 +1,11 @@
 import { Button } from "@material-tailwind/react";
 import { Formik } from "formik";
-import React, { useState } from "react";
+import { useState } from "react";
 import { errorRegisterSchema } from "../utils/validationSchema";
 import clientAxios, { config } from "../utils/axiosClient";
 import { Modal } from "react-bootstrap";
 import { toast } from "sonner";
+import PropTypes from "prop-types";
 
 const RegisterComp = ({ type }) => {
   const [viewPass, setViewPass] = useState(false);
@@ -357,3 +358,7 @@ const RegisterComp = ({ type }) => {
 };
 
 export default RegisterComp;
+
+RegisterComp.propTypes = {
+  type: PropTypes.string,
+};

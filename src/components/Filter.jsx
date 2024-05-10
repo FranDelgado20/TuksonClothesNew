@@ -1,26 +1,17 @@
-import React from "react";
-import { Fragment, useState } from "react";
-import { Dialog, Disclosure, Menu, Transition } from "@headlessui/react";
-import { XMarkIcon } from "@heroicons/react/24/outline";
-import {
-  ChevronDownIcon,
-  FunnelIcon,
-  MinusIcon,
-  PlusIcon,
-  Squares2X2Icon,
-} from "@heroicons/react/20/solid";
-import { Col, Container, Row } from "react-bootstrap";
+import { Fragment } from "react";
+import { Menu, Transition } from "@headlessui/react";
+import { Col, Row } from "react-bootstrap";
 import {
   Card,
   CardHeader,
   CardBody,
   CardFooter,
   Typography,
-  Button,
 } from "@material-tailwind/react";
 import ModalProd from "../components/ModalProd";
 import Icono from "./Icono";
 import { Link } from "react-router-dom";
+import { ChevronDownIcon } from "@heroicons/react/24/outline";
 const sortOptions = [
   {
     name: "Remeras",
@@ -85,7 +76,7 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 const Filter = () => {
-  const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
+  // const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
   return (
     <div className="bg-white">
       <div>

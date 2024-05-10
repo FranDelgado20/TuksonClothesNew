@@ -1,4 +1,3 @@
-import React from "react";
 import { Typography } from "@material-tailwind/react";
 import { Col, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";

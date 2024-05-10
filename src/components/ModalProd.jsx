@@ -1,9 +1,9 @@
-import React from "react";
 import { Fragment, useState } from "react";
 import { Dialog, RadioGroup, Transition } from "@headlessui/react";
 import { XMarkIcon } from "@heroicons/react/24/outline";
 import { StarIcon } from "@heroicons/react/20/solid";
 import { Button } from "@material-tailwind/react";
+import PropTypes from "prop-types";
 
 const product = {
   name: "Basic Tee 6-Pack ",
@@ -301,3 +301,7 @@ const ModalProd = ({ prod }) => {
 };
 
 export default ModalProd;
+
+ModalProd.propTypes = {
+  prod: PropTypes.object.isRequired,
+};

@@ -6,12 +6,11 @@ import {
   Typography,
   Button,
   CardBody,
-  Chip,
   IconButton,
   Tooltip,
 } from "@material-tailwind/react";
 import { useEffect, useState } from "react";
-import { Col, Row } from "react-bootstrap";
+import PropTypes from "prop-types";
 
 const TABLE_HEAD_USERS = [
   "Foto de perfil",
@@ -26,7 +25,6 @@ const TableComp = ({ tabOption, data, setData, dataAux }) => {
   const classes = "p-4 border-b border-blue-gray-50";
 
   const [search, setSearch] = useState("");
-
   useEffect(() => {
     if (search) {
       const result = dataAux.filter(
@@ -38,7 +36,7 @@ const TableComp = ({ tabOption, data, setData, dataAux }) => {
       return;
     }
     setData(dataAux);
-  }, [search]);
+  }, [search, dataAux, setData]);
 
   return (
     <>
@@ -86,86 +84,92 @@ const TableComp = ({ tabOption, data, setData, dataAux }) => {
                 className={
                   "bg-gray-100 text-gray-900 text-sm rounded-lg block ps-10 p-2.5 widthBuscador"
                 }
-                onChange={(ev) => setSearch(ev.target.value)}
+                onChange={(ev) => setSearch(ev.target.value.toLowerCase())}
               />
             </div>
           </CardHeader>
-          <CardBody className="overflow-scroll px-0">
-            <table className="mt-4 w-full min-w-max table-auto text-left">
-              <thead>
-                <tr>
-                  {TABLE_HEAD_USERS.map((head) => (
-                    <th
-                      key={head}
-                      className="border-y border-blue-gray-100 bg-blue-gray-50/50 p-4"
-                    >
-                      <Typography
-                        variant="small"
-                        color="blue-gray"
-                        className="font-normal leading-none opacity-70"
+          <CardBody>
+            {data.length > 0 ? (
+              <table className="mt-4 w-full min-w-max table-auto text-left">
+                <thead>
+                  <tr>
+                    {TABLE_HEAD_USERS.map((head) => (
+                      <th
+                        key={head}
+                        className="border-y border-blue-gray-100 bg-blue-gray-50/50 p-4"
                       >
-                        {head}
-                      </Typography>
-                    </th>
-                  ))}
-                </tr>
-              </thead>
-              <tbody>
-                {data.map(({ name, email, img, role }, index) => (
-                  <tr key={index}>
-                    <td className={classes}>
-                      <img
-                        src={img}
-                        alt={name}
-                        className="max-w-28 rounded-full"
-                      />
-                    </td>
-                    <td className={classes}>
-                      <Typography
-                        variant="small"
-                        color="blue-gray"
-                        className="font-normal"
-                      >
-                        {name}
-                      </Typography>
-                    </td>
-                    <td className={classes}>
-                      <Typography
-                        variant="small"
-                        color="blue-gray"
-                        className="font-normal"
-                      >
-                        {email}
-                      </Typography>
-                    </td>
-                    <td className={classes}>
-                      <Typography
-                        variant="small"
-                        color="blue-gray"
-                        className="font-normal"
-                      >
-                        {role === "admin" ? "Administrador" : "Usuario"}
-                      </Typography>
-                    </td>
-
-                    <td className={classes}>
-                      <Tooltip content="Editar usuario">
-                        <IconButton variant="text">
-                          <PencilIcon className="h-6 w-6" />
-                        </IconButton>
-                      </Tooltip>
-                    </td>
-                    <td className={classes}>
-                      <Tooltip content="Eliminar usuario">
-                        <IconButton variant="text">
-                          <TrashIcon className="h-6 w-6" />
-                        </IconButton>
-                      </Tooltip>
-                    </td>
+                        <Typography
+                          variant="small"
+                          color="blue-gray"
+                          className="font-normal leading-none opacity-70"
+                        >
+                          {head}
+                        </Typography>
+                      </th>
+                    ))}
                   </tr>
-                ))}
-              </tbody>
-            </table>
+                </thead>
+                <tbody>
+                  {data.map(({ name, email, img, role }, index) => (
+                    <tr key={index}>
+                      <td className={classes}>
+                        <img
+                          src={img}
+                          alt={name}
+                          className="max-w-28 rounded-full"
+                        />
+                      </td>
+                      <td className={classes}>
+                        <Typography
+                          variant="small"
+                          color="blue-gray"
+                          className="font-normal"
+                        >
+                          {name}
+                        </Typography>
+                      </td>
+                      <td className={classes}>
+                        <Typography
+                          variant="small"
+                          color="blue-gray"
+                          className="font-normal"
+                        >
+                          {email}
+                        </Typography>
+                      </td>
+                      <td className={classes}>
+                        <Typography
+                          variant="small"
+                          color="blue-gray"
+                          className="font-normal"
+                        >
+                          {role === "admin" ? "Administrador" : "Usuario"}
+                        </Typography>
+                      </td>
+
+                      <td className={classes}>
+                        <Tooltip content="Editar usuario">
+                          <IconButton variant="text">
+                            <PencilIcon className="h-6 w-6" />
+                          </IconButton>
+                        </Tooltip>
+                      </td>
+                      <td className={classes}>
+                        <Tooltip content="Eliminar usuario">
+                          <IconButton variant="text">
+                            <TrashIcon className="h-6 w-6" />
+                          </IconButton>
+                        </Tooltip>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            ) : (
+              <h1 className="text-center my-5">
+                No existen resultados para su búsqueda
+              </h1>
+            )}
           </CardBody>
         </Card>
       ) : (
@@ -175,3 +179,10 @@ const TableComp = ({ tabOption, data, setData, dataAux }) => {
   );
 };
 export default TableComp;
+
+TableComp.propTypes = {
+  tabOption: PropTypes.string.isRequired,
+  data: PropTypes.array.isRequired,
+  setData: PropTypes.func.isRequired,
+  dataAux: PropTypes.array.isRequired,
+};

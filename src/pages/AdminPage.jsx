@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
 import {
   Tabs,
   TabsHeader,
@@ -10,6 +10,7 @@ import { ShoppingBagIcon, UserIcon } from "@heroicons/react/24/outline";
 import TableComp from "../components/TableComp";
 import clientAxios from "../utils/axiosClient";
 import { toast } from "sonner";
+import { Spinner } from "react-bootstrap";
 
 const AdminPage = () => {
   const menu = [
@@ -24,57 +25,61 @@ const AdminPage = () => {
       icon: UserIcon,
     },
   ];
-  const token = JSON.parse(sessionStorage.getItem("token"));
 
   const [users, setUsers] = useState([]);
   const [usersAux, setUsersAux] = useState([]);
   const [products, setProducts] = useState([]);
-  const [tabOption, setTabOption] = useState("Productos");
+  const [tabOption, setTabOption] = useState("Usuarios");
+  const [showSpinner, setShowSpinner] = useState(true);
 
-  const getProducts = async () => {
-    try {
-      const res = await clientAxios.get("/productos");
-      setProducts(res.data.allProds);
-    } catch (error) {
-      toast.error("Al parecer hubo un error", {
-        description: error,
-      });
-    }
-  };
-  const getUsers = async () => {
-    try {
-      const response = await fetch(
-        `${import.meta.env.VITE_URL_BACK_DEPLOY}/usuarios`,
-        {
-          method: "GET",
-          headers: {
-            "Content-Type": "Application/json",
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
-      const res = response.ok && (await response.json());
-      setUsers(res.allUsers);
-      setUsersAux(res.allUsers);
-    } catch (error) {
-      toast.error("Al parecer hubo un error", {
-        description: error,
-      });
-    }
-  };
+  const memoizedSetUsers = useCallback((newUsers) => {
+    setUsers(newUsers);
+  }, []);
+  const memoizedDataAux = useMemo(() => usersAux, [usersAux]);
 
   useEffect(() => {
-    if (tabOption === "Productos" && products.length === 0) getProducts();
-    else if (tabOption === "Usuarios" && users.length === 0) getUsers();
-  }, [tabOption]);
+    const token = JSON.parse(sessionStorage.getItem("token"));
 
-  // const searcher = (ev) => {
-  //   const { value } = ev.target;
-  //   setSearch(value.toLowerCase());
-  // };
+    const getUsers = async () => {
+      try {
+        const response = await fetch(
+          `${import.meta.env.VITE_URL_BACK_DEPLOY}/usuarios`,
+          {
+            method: "GET",
+            headers: {
+              "Content-Type": "Application/json",
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+        const res = await response.json();
+        memoizedSetUsers(res.allUsers);
+        setUsersAux(res.allUsers);
+        setShowSpinner(false);
+      } catch (error) {
+        toast.error("Al parecer hubo un error", {
+          description: error,
+        });
+      }
+    };
+    const getProducts = async () => {
+      try {
+        const res = await clientAxios.get("/productos");
+        setProducts(res.data.allProds);
+        setShowSpinner(false);
+      } catch (error) {
+        toast.error("Al parecer hubo un error", {
+          description: error,
+        });
+      }
+    };
+    getUsers();
+    getProducts();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
-    <Tabs value="Productos">
+    <Tabs value={tabOption}>
       <TabsHeader>
         {menu.map(({ title, value, icon }) => (
           <Tab key={value} value={value} onClick={() => setTabOption(value)}>
@@ -88,20 +93,34 @@ const AdminPage = () => {
       <TabsBody>
         {tabOption === "Productos" ? (
           <TabPanel value={tabOption}>
-            <TableComp
-              value={tabOption}
-              data={products}
-              setData={setProducts}
-            />
+            {showSpinner ? (
+              <div className="text-center my-5">
+                <Spinner />
+                <h5 className="mt-3">Cargando información...</h5>
+              </div>
+            ) : (
+              <TableComp
+                value={tabOption}
+                data={products}
+                // setData={setProducts}
+              />
+            )}
           </TabPanel>
         ) : (
           <TabPanel value={tabOption}>
-            <TableComp
-              tabOption={tabOption}
-              data={users}
-              setData={setUsers}
-              dataAux={usersAux}
-            />
+            {showSpinner ? (
+              <div className="text-center my-5">
+                <Spinner />
+                <h5 className="mt-3">Cargando información...</h5>
+              </div>
+            ) : (
+              <TableComp
+                tabOption={tabOption}
+                data={users}
+                setData={memoizedSetUsers}
+                dataAux={memoizedDataAux}
+              />
+            )}
           </TabPanel>
         )}
       </TabsBody>

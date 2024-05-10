@@ -1,4 +1,3 @@
-import React from "react";
 import { Container } from "react-bootstrap";
 import NewArrivals from "../components/NewArrivals";
 import Banner from "../components/Banner";

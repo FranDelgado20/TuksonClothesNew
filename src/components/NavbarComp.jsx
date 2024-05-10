@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import {
   Navbar,
   Collapse,
@@ -21,6 +21,7 @@ import Cart from "./Cart";
 import RegisterComp from "./RegisterComp";
 import LoginComp from "./LoginComp";
 import { Link, useNavigate } from "react-router-dom";
+import PropTypes from "prop-types";
 
 const navListMenuItems = [
   {
@@ -244,16 +245,16 @@ const NavbarComp = () => {
   const [openNav, setOpenNav] = useState(false);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [role, setRole] = useState("");
-  const [idUser, setIdUser] = useState("");
+  // const [idUser, setIdUser] = useState("");
 
+  const token = JSON.parse(sessionStorage.getItem("token"));
   useEffect(() => {
-    const token = JSON.parse(sessionStorage.getItem("token"));
     if (token) {
       setIsAuthenticated(true);
       setRole(JSON.parse(sessionStorage.getItem("role")));
-      setIdUser(JSON.parse(sessionStorage.getItem("idUser")));
+      // setIdUser(JSON.parse(sessionStorage.getItem("idUser")));
     }
-  }, [JSON.parse(sessionStorage.getItem("token"))]);
+  }, [token]);
 
   const handleLogout = () => {
     sessionStorage.removeItem("token");
@@ -261,7 +262,7 @@ const NavbarComp = () => {
     sessionStorage.removeItem("role");
 
     setRole("");
-    setIdUser("");
+    // setIdUser("");
     setIsAuthenticated(false);
 
     navigate("/");
@@ -321,3 +322,12 @@ const NavbarComp = () => {
 };
 
 export default NavbarComp;
+
+NavList.propTypes = {
+  role: PropTypes.string,
+};
+Authentication.propTypes = {
+  isAuthenticated: PropTypes.bool.isRequired,
+  handleLogout: PropTypes.func.isRequired,
+  role: PropTypes.string,
+};

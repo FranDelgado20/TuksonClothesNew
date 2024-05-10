@@ -1,6 +1,4 @@
-import { useEffect, useState } from "react";
 import "aos/dist/aos.css";
-import Aos from "aos";
 import NavbarComp from "./components/NavbarComp";
 import { BrowserRouter as Router } from "react-router-dom";
 import RoutesViews from "./routes/RoutesViews";
