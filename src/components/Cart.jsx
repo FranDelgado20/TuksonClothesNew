@@ -11,7 +11,7 @@ const products = [
     color: "Salmon",
     price: "$90.00",
     quantity: 1,
-    imageSrc: "remera1.jpg",
+    imageSrc: "/productos/remera1.jpg",
     imageAlt:
       "Salmon orange fabric pouch with match zipper, gray zipper pull, and adjustable hip belt.",
   },
@@ -22,7 +22,7 @@ const products = [
     color: "Blue",
     price: "$32.00",
     quantity: 1,
-    imageSrc: "remera2.jpg",
+    imageSrc: "/productos/remera2.jpg",
     imageAlt:
       "Front of satchel with blue canvas body, black straps and handle, drawstring top, and front zipper pouch.",
   },
@@ -30,16 +30,14 @@ const products = [
 ];
 const Cart = () => {
   const [open, setOpen] = useState(false);
-  const openCart = () => {
-    setOpen(true);
-  };
+  const openCart = () => setOpen(true);
 
   return (
     <>
       <Button
         onClick={openCart}
         variant="text"
-        className="boton flex items-center gap-1 p-0 h-min normal-case text-sm my-2"
+        className="boton flex items-center gap-1 p-1 rounded-full h-min normal-case text-sm my-2 hover:bg-transparent"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -70,7 +68,6 @@ const Cart = () => {
           >
             <div className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" />
           </Transition.Child>
-
           <div className="fixed inset-0 overflow-hidden">
             <div className="absolute inset-0 overflow-hidden">
               <div className="pointer-events-none fixed inset-y-0 right-0 flex max-w-full pl-10">

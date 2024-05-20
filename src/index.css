@@ -9,7 +9,7 @@
 .mainSection {
   flex-grow: 1;
 }
-.color-nav-footer {
+nav, footer, .color-nav-footer {
   background-color: #f3ebd8;
 }
 .boton {
@@ -19,11 +19,11 @@
   color: #fd4b2e;
 }
 .widthBuscador {
-  width: 40%;
+  width: 30%;
 }
 @media (width < 991px) {
   .widthBuscador {
-    width: 75%;
+    width: 60%;
   }
 }
 @media (width < 394px) {

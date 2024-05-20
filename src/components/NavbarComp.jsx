@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import {
-  Navbar,
   Collapse,
   Typography,
   Button,
@@ -56,7 +55,7 @@ function NavListMenu() {
 
   const renderItems = navListMenuItems.map(({ icon, title }, key) => (
     <MenuItem className="flex items-center rounded-lg" key={key}>
-      <div className="flex items-center justify-center rounded-lg !bg-blue-gray-50 p-2">
+      <div className="flex items-center justify-center rounded-lg p-2">
         <Icono icon={icon} />
       </div>
       <div>
@@ -64,7 +63,7 @@ function NavListMenu() {
           <Typography
             variant="h6"
             color="blue-gray"
-            className="flex items-center text-sm boton"
+            className="flex items-center text-sm"
           >
             {title}
           </Typography>
@@ -86,7 +85,7 @@ function NavListMenu() {
           <Link to={"/productos"} className="no-underline">
             <Typography as="div" variant="small" className="font-medium">
               <ListItem
-                className="flex items-center gap-2 p-0 boton font-bold my-2"
+                className="flex items-center rounded-full gap-2 p-1 boton font-bold my-2 bg-transparent hover:text-deep-orange-500"
                 selected={isMenuOpen || isMobileMenuOpen}
                 onClick={() => setIsMobileMenuOpen((cur) => !cur)}
               >
@@ -107,7 +106,7 @@ function NavListMenu() {
             </Typography>
           </Link>
         </MenuHandler>
-        <MenuList className="hidden max-w-screen-xl rounded-xl lg:block z-10">
+        <MenuList className="hidden max-w-screen-xl rounded-xl lg:block">
           <ul className="grid grid-cols-3 gap-y-2 outline-none outline-0 m-0 p-0">
             {renderItems}
           </ul>
@@ -122,10 +121,11 @@ function NavListMenu() {
 function NavList({ role }) {
   return (
     <>
-      <Link to={"/"} className="no-underline font-bold text-sm">
-        <ListItem className="flex items-center gap-2 p-0 boton my-2">
-          Inicio
-        </ListItem>
+      <Link
+        to={"/"}
+        className="no-underline font-bold text-sm boton p-1 my-2"
+      >
+        Inicio
       </Link>
       <NavListMenu />
       {role !== "admin" && <Cart />}
@@ -275,7 +275,7 @@ const NavbarComp = () => {
     );
   }, []);
   return (
-    <Navbar className=" px-4 py-1 color-nav-footer bg-slate-50 rounded-none">
+    <nav className="px-4 py-1 rounded-none">
       <div className="flex items-center justify-between">
         <Link to={"/"}>
           <img
@@ -317,7 +317,7 @@ const NavbarComp = () => {
           />
         </div>
       </Collapse>
-    </Navbar>
+    </nav>
   );
 };
 

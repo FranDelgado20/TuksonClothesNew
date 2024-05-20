@@ -6,7 +6,7 @@ const Error404 = () => {
   return (
     <>
       <Toaster richColors />
-      <Container fluid>
+      <Container fluid className="my-5">
         <div className="flex justify-center align-items-center flex-col">
           <img
             src="/Error.png"

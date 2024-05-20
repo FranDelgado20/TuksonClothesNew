@@ -9,7 +9,7 @@ const HomePage = () => {
     <>
       <Toaster richColors />
       <Banner />
-      <Container fluid>
+      <Container fluid className="my-5">
         <NewArrivals />
         <Subs />
       </Container>

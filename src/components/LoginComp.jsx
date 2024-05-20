@@ -50,7 +50,7 @@ const LoginComp = () => {
     <>
       <Button
         variant="text"
-        className="boton p-0 h-min rounded-none normal-case text-sm my-2"
+        className="boton p-1 h-min rounded-full normal-case text-sm my-2 hover:bg-transparent"
         onClick={handleShow}
       >
         Iniciar sesión

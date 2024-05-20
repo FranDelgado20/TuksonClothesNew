@@ -61,7 +61,7 @@ const RegisterComp = ({ type }) => {
       ) : (
         <Button
           variant="text"
-          className="boton p-0 h-min normal-case text-sm my-2 rounded-none"
+          className="boton p-1 h-min normal-case text-sm my-2 rounded-full hover:bg-transparent"
           onClick={handleShow}
         >
           Registrarse
@@ -77,8 +77,8 @@ const RegisterComp = ({ type }) => {
                 </h1>
                 <img
                   className="mx-auto w-44"
-                  src="logo.png"
-                  alt="Your Company"
+                  src="/logo.png"
+                  alt="Logo Tukson Clothes"
                 />
               </div>
               <Formik

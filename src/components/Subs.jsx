@@ -63,14 +63,15 @@ const Subs = () => {
                     USD
                   </span>
                 </p>
-                <a
-                  href="#"
+                <button
+                  type="button"
                   className="mt-10 block w-full rounded-md  color-nav-footer px-3 py-2 text-center text-sm font-semibold no-underline text-black shadow-sm transition hover:bg-orange-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                 >
                   Suscribirme
-                </a>
+                </button>
                 <p className="mt-6 text-xs leading-5 text-gray-600">
-                  No incluye impuestos bancarios. (Esto dependera de su banco y los impuestos aplicables por éste)
+                  No incluye impuestos bancarios. (Esto dependera de su banco y
+                  los impuestos aplicables por éste)
                 </p>
               </div>
             </div>

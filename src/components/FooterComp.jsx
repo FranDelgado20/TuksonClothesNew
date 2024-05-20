@@ -3,7 +3,7 @@ import { Col, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
 const FooterComp = () => {
   return (
-    <footer className="mt-24 color-nav-footer">
+    <footer>
       <Row className="mx-0">
         <Col lg={12} className="flex justify-center my-3">
           <Link to={"/"}>
@@ -18,7 +18,7 @@ const FooterComp = () => {
           <Link to={"/about"} className="no-underline">
             <Typography
               color="blue-gray"
-              className="font-normal transition-colors boton no-underline"
+              className="font-bold transition-colors boton no-underline"
             >
               Nosotros
             </Typography>
@@ -26,7 +26,7 @@ const FooterComp = () => {
           <Link to={"/contact"} className="no-underline">
             <Typography
               color="blue-gray"
-              className="font-normal transition-colors boton no-underline"
+              className="font-bold transition-colors boton no-underline"
             >
               Contáctanos
             </Typography>

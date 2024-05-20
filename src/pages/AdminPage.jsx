@@ -9,7 +9,7 @@ import {
 import { ShoppingBagIcon, UserIcon } from "@heroicons/react/24/outline";
 import TableComp from "../components/TableComp";
 import clientAxios from "../utils/axiosClient";
-import { toast } from "sonner";
+import { Toaster, toast } from "sonner";
 import { Spinner } from "react-bootstrap";
 
 const AdminPage = () => {
@@ -29,13 +29,19 @@ const AdminPage = () => {
   const [users, setUsers] = useState([]);
   const [usersAux, setUsersAux] = useState([]);
   const [products, setProducts] = useState([]);
-  const [tabOption, setTabOption] = useState("Usuarios");
+  const [productsAux, setProductsAux] = useState([]);
+  const [tabOption, setTabOption] = useState("Productos");
   const [showSpinner, setShowSpinner] = useState(true);
 
   const memoizedSetUsers = useCallback((newUsers) => {
     setUsers(newUsers);
   }, []);
-  const memoizedDataAux = useMemo(() => usersAux, [usersAux]);
+  const memoizedUserAux = useMemo(() => usersAux, [usersAux]);
+
+  const memoizedSetProducts = useCallback((newProds) => {
+    setProducts(newProds);
+  }, []);
+  const memoizedProdAux = useMemo(() => productsAux, [productsAux]);
 
   useEffect(() => {
     const token = JSON.parse(sessionStorage.getItem("token"));
@@ -66,11 +72,13 @@ const AdminPage = () => {
       try {
         const res = await clientAxios.get("/productos");
         setProducts(res.data.allProds);
+        setProductsAux(res.data.allProds);
         setShowSpinner(false);
       } catch (error) {
         toast.error("Al parecer hubo un error", {
-          description: error,
+          description: error.response.data.msg,
         });
+        console.log(error)
       }
     };
     getUsers();
@@ -79,52 +87,59 @@ const AdminPage = () => {
   }, []);
 
   return (
-    <Tabs value={tabOption}>
-      <TabsHeader>
-        {menu.map(({ title, value, icon }) => (
-          <Tab key={value} value={value} onClick={() => setTabOption(value)}>
-            <div className="flex items-center gap-2 z-20">
-              {React.createElement(icon, { className: "w-5 h-5" })}
-              {title}
-            </div>
-          </Tab>
-        ))}
-      </TabsHeader>
-      <TabsBody>
-        {tabOption === "Productos" ? (
-          <TabPanel value={tabOption}>
-            {showSpinner ? (
-              <div className="text-center my-5">
-                <Spinner />
-                <h5 className="mt-3">Cargando información...</h5>
+    <>
+      <Toaster richColors />
+
+      <Tabs value={tabOption} className="">
+        <TabsHeader className="bg-blue-gray-50">
+          {menu.map(({ title, value, icon }) => (
+            <Tab key={value} value={value} onClick={() => setTabOption(value)}>
+              <div className="flex items-center gap-2">
+                {React.createElement(icon, { className: "w-5 h-5" })}
+                {title}
               </div>
-            ) : (
-              <TableComp
-                value={tabOption}
-                data={products}
-                // setData={setProducts}
-              />
-            )}
-          </TabPanel>
-        ) : (
-          <TabPanel value={tabOption}>
-            {showSpinner ? (
-              <div className="text-center my-5">
-                <Spinner />
-                <h5 className="mt-3">Cargando información...</h5>
-              </div>
-            ) : (
-              <TableComp
-                tabOption={tabOption}
-                data={users}
-                setData={memoizedSetUsers}
-                dataAux={memoizedDataAux}
-              />
-            )}
-          </TabPanel>
-        )}
-      </TabsBody>
-    </Tabs>
+            </Tab>
+          ))}
+        </TabsHeader>
+        <TabsBody>
+          {tabOption === "Productos" ? (
+            <TabPanel value={tabOption}>
+              {showSpinner ? (
+                <div className="text-center my-5">
+                  <Spinner />
+                  <h5 className="mt-3">Cargando información...</h5>
+                </div>
+              ) : (
+                <TableComp
+                  tabOption={tabOption}
+                  data={products}
+                  setData={memoizedSetProducts}
+                  dataAux={memoizedProdAux}
+                  setDataAux={setProductsAux}
+                />
+              )}
+            </TabPanel>
+          ) : (
+            <TabPanel value={tabOption}>
+              {showSpinner ? (
+                <div className="text-center my-5">
+                  <Spinner />
+                  <h5 className="mt-3">Cargando información...</h5>
+                </div>
+              ) : (
+                <TableComp
+                  tabOption={tabOption}
+                  data={users}
+                  setData={memoizedSetUsers}
+                  dataAux={memoizedUserAux}
+                  setDataAux={setUsersAux}
+                />
+              )}
+            </TabPanel>
+          )}
+        </TabsBody>
+      </Tabs>
+    </>
   );
 };
 

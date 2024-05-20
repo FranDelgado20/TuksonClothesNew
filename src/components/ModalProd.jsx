@@ -83,14 +83,14 @@ const ModalProd = ({ prod }) => {
                     <div className="grid w-full grid-cols-1 items-start gap-x-6 gap-y-8 sm:grid-cols-12 lg:gap-x-8">
                       <div className="aspect-h-3 aspect-w-2 overflow-hidden rounded-lg bg-gray-100 sm:col-span-4 lg:col-span-5">
                         <img
-                          src={prod.img}
-                          alt={prod.name}
+                          src={prod.imagen}
+                          alt={prod.nombre}
                           className="object-cover object-center"
                         />
                       </div>
                       <div className="sm:col-span-8 lg:col-span-7">
                         <h2 className="text-2xl font-bold text-gray-900 sm:pr-12">
-                          {prod.name}
+                          {prod.nombre}
                         </h2>
 
                         <section
@@ -102,7 +102,7 @@ const ModalProd = ({ prod }) => {
                           </h3>
 
                           <p className="text-2xl text-gray-900">
-                            ${prod.price}
+                            ${prod.precio}
                           </p>
 
                           {/* Reviews */}
